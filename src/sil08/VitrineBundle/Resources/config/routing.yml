@@ -1,0 +1,94 @@
+sil08_vitrine_administration:
+    resource: "@sil08VitrineBundle/Resources/config/routing/administration.yml"
+    prefix: /administration
+
+sil08_vitrine_homepage:
+    path: /accueil
+    defaults: { _controller: sil08VitrineBundle:Default:index }
+    requirements:
+        name: '[a-zA-Z]+'
+
+sil08_vitrine_mentions:
+    path: /mentions
+    defaults: { _controller: sil08VitrineBundle:Default:mentions}
+
+sil08_vitrine_inscription:
+    path: /inscription
+    defaults: { _controller: sil08VitrineBundle:Default:inscription }
+
+sil08_client_show:
+    path:     /client/{id}/show
+    defaults: { _controller: sil08VitrineBundle:Default:showClient }
+    methods:  GET
+
+sil08_client_edit:
+    path:     /client/{id}/edit
+    defaults: { _controller: sil08VitrineBundle:Default:editClient }
+    methods:  [GET, POST]
+
+sil08_vitrine_catalogue:
+    path: /catalogue
+    defaults: { _controller: sil08VitrineBundle:Default:catalogue}
+
+sil08_vitrine_articles_par_categorie:
+    path: /articlesParCategorie/{id}
+    defaults: { _controller: sil08VitrineBundle:Default:articlesParCategorie}
+    requirements:
+        id: '\d+'
+
+sil08_vitrine_contenu_panier:
+    path: /contenuPanier
+    defaults: { _controller: sil08VitrineBundle:Default:contenuPanier }
+
+sil08_vitrine_ajout_article:
+    path: /ajoutArticle/{id}/{qte}
+    defaults: { _controller: sil08VitrineBundle:Default:ajoutArticle, qte: "1" }
+    requirements:
+        id: '\d+'
+        qte: '\d+'
+
+sil08_vitrine_supprimer_un_article:
+    path: /supprimerUnArticle/{id}
+    defaults: { _controller: sil08VitrineBundle:Default:supprimerUnArticle }
+    requirements:
+        id: '\d+'
+
+sil08_vitrine_supprimer_article:
+    path: /supprimerArticle/{id}
+    defaults: { _controller: sil08VitrineBundle:Default:supprimerArticle }
+    requirements:
+        id: '\d+'
+
+sil08_vitrine_vider_panier:
+    path: /viderPanier
+    defaults: { _controller: sil08VitrineBundle:Default:viderPanier}
+
+sil08_vitrine_validation_panier:
+    path: /client/validationPanier
+    defaults: { _controller: sil08VitrineBundle:Default:validationPanier}
+
+sil08_commande_index:
+    path:     /client/commande
+    defaults: { _controller: sil08VitrineBundle:Default:indexCommande }
+    methods:  GET
+
+sil08_commande_show:
+    path:     /client/commande/{id}/show
+    defaults: { _controller: sil08VitrineBundle:Default:showCommande }
+    methods:  GET
+
+sil08_avis_article:
+    path: /avis/{id}
+    defaults: { _controller: sil08VitrineBundle:Default:showAndEditAvisArticle }
+    methods: [GET, POST]
+
+login:
+    path: /login
+    defaults:
+        _controller: sil08VitrineBundle:Security:login
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout

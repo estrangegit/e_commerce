@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="navbar navbar-default">
+        <ul class="nav navbar-nav">
+            <li class="active"> <a href="{{ path('sil08_vitrine_homepage') }}"><span class="glyphicon glyphicon-home"></span><br>Accueil</a> </li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li> <a href="{{ path('administration_accueil') }}"><span class="glyphicon glyphicon-dashboard"></span><br>Administration</a> </li>
+            {% endif %}
+            <li> <a href="{{ path('sil08_vitrine_mentions') }}"><span class="glyphicon glyphicon-info-sign"></span><br>Mentions légales</a> </li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li> <a href="{{ path('sil08_client_show', {'id': app.user.id }) }}"><span class="glyphicon glyphicon-user"></span><br>Mon compte</a> </li>
+            {% else %}
+                <li> <a href="{{ path('sil08_vitrine_inscription') }}"><span class="glyphicon glyphicon-user"></span><br>Inscription</a> </li>
+            {% endif %}
+
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li> <a href="{{ path('logout') }}"><span class="glyphicon glyphicon-log-out"></span><br>Deconnexion</a> </li>
+            {% else %}
+                <li> <a href="{{ path('login') }}"><span class="glyphicon glyphicon-log-in"></span><br>Connexion</a> </li>
+            {% endif %}
+            <li> <a href="{{ path('sil08_vitrine_catalogue') }}"><span class="glyphicon glyphicon-list-alt"></span><br>Catalogue</a> </li>
+            <li><a href="{{ path('sil08_vitrine_contenu_panier') }}"><span class="glyphicon glyphicon-shopping-cart"></span><br>Panier</a></li>
+            <li><a href="{{ path('sil08_commande_index') }}"><span class="glyphicon glyphicon-send"></span><br>Commandes</a></li>
+        </ul>
+    </div>
+</div>

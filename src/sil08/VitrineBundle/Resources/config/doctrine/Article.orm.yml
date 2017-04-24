@@ -1,0 +1,32 @@
+sil08\VitrineBundle\Entity\Article:
+    type: entity
+    repositoryClass: sil08\VitrineBundle\Entity\ArticleRepository
+    table: article
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        libelle:
+            type: string
+        prix:
+            type: decimal
+            scale: 2
+        stock:
+            type: integer
+        image:
+            type: string
+    manyToOne:
+        categorie:
+            targetEntity: Categorie
+            inversedBy: articles
+            joinColumn:
+                name: id_categorie
+                referencedColumnName: id
+    oneToMany:
+        commandes_articles:
+            targetEntity: CommandeArticle
+            mappedBy: article
+        avis:
+            targetEntity: Avis
+            mappedBy: article

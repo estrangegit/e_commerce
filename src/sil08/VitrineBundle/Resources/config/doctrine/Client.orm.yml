@@ -1,0 +1,35 @@
+sil08\VitrineBundle\Entity\Client:
+    type: entity
+    table: client
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        prenom:
+            type: string
+            length: 100
+        nom:
+            type: string
+            length: 100
+        pseudo:
+            type: string
+            length: 100
+        motDePasse:
+            type: string
+            length: 100
+        adresse:
+            type: text
+        email:
+            type: string
+        admin:
+            type: boolean
+            options:
+                default: false
+    oneToMany:
+        commandes:
+            targetEntity: Commande
+            mappedBy: client
+        avis:
+            targetEntity: Avis
+            mappedBy: client

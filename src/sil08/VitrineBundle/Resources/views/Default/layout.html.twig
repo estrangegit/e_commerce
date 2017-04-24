@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ asset('bundles/sil08vitrine/bootstrap/css/bootstrap.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/sil08vitrine/css/layout.css') }}" />
+    {% block specificCSS %}{% endblock %}
+    <title>{% block title %}Titre par défaut{% endblock %}</title>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="row" id="header">
+            {%  block header %}
+                {% include "sil08VitrineBundle:Default:header.html.twig" %}
+            {% endblock %}
+        </div>
+
+        <div class="row" id="identite">
+            {% block identite %}
+                {{ render(controller('sil08VitrineBundle:Default:indexLayout')) }}
+            {% endblock %}
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                {% block panier %}
+                    {{ render(controller('sil08VitrineBundle:Default:contenuPanierLayout')) }}
+                {% endblock %}
+            </div>
+            <div class="col-lg-6">
+                {% block meilleuresVentes %}
+                    {{ render(controller('sil08VitrineBundle:Default:plusVendus', { 'max': 3 })) }}
+                {% endblock %}
+            </div>
+        </div>
+
+        <div class="row" id="content">
+            {% block content %}{% endblock %}
+        </div>
+
+        <div class="row">
+            {%  block footer %}
+                {% include "sil08VitrineBundle:Default:footer.html.twig" %}
+            {%  endblock %}
+        </div>
+
+    </div>
+
+    <script src="{{ asset('bundles/sil08vitrine/bootstrap/js/jquery.js') }}"></script>
+    <script src="{{ asset('bundles/sil08vitrine/bootstrap/js/bootstrap.js') }}"></script>
+</body>
+</html>

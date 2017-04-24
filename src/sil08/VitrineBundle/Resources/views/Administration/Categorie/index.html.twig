@@ -1,0 +1,49 @@
+{%  extends 'sil08VitrineBundle:Administration:layoutAdministration.html.twig' %}
+
+{% block title %}
+    Clients
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="jumbotron">
+                <h2>Consultation des catégories</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="panel panel-info">
+                <table class="table table-striped">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Liste des categories</h3>
+                    </div>
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Intitule</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for categorie in categories %}
+                        <tr>
+                            <td>{{ categorie.id }}</td>
+                            <td>{{ categorie.intitule }}</td>
+                            <td>
+                                <a class="btn btn-info" href="{{ path('administration_categorie_edit', { 'id': categorie.id }) }}">Modifier</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <a class="btn btn-info" href="{{ path('administration_categorie_new') }}">Ajouter</a>
+        </div>
+    </div>
+
+{% endblock %}

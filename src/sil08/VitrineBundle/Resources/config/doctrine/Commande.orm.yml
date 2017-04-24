@@ -1,0 +1,25 @@
+sil08\VitrineBundle\Entity\Commande:
+    type: entity
+    repositoryClass: sil08\VitrineBundle\Entity\CommandeRepository
+    table: commande
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        date:
+            type: datetime
+        etat:
+            type: string
+            length: 100
+    manyToOne:
+        client:
+            targetEntity: Client
+            inversedBy: commandes
+            joinColumn:
+                name: id_client
+                referencedColumnName: id
+    oneToMany:
+        commandes_articles:
+            targetEntity: CommandeArticle
+            mappedBy: commande

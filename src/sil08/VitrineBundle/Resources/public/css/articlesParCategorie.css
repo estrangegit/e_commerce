@@ -1,0 +1,15 @@
+.article{
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 2%;
+}
+
+div.article div div img{
+    width: 150px;
+}
+
+.red{
+    color: red;
+    margin-right: 5px;
+}

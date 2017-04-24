@@ -1,0 +1,54 @@
+{%  extends 'sil08VitrineBundle:Default:layout.html.twig' %}
+
+
+{% block title %}
+    compte
+{% endblock %}
+
+{% block identite %}
+{% endblock %}
+
+{% block panier %}
+{% endblock %}
+
+{% block meilleuresVentes %}
+{% endblock %}
+
+{% block content %}
+    {#
+
+    {% for message in app.session.flashbag.get('error') %}
+        <div class="row">
+            <div class="col-lg-offset-3 col-lg-6 alert alert-block alert-danger">
+                <span>{{ message }}</span>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% for message in app.session.flashbag.get('notice') %}
+        <div class="row">
+            <div class="col-lg-offset-3 col-lg-6 alert alert-block alert-success">
+                <span>{{ message }}</span>
+            </div>
+        </div>
+    {% endfor %}
+
+#}
+    <div class="row">
+
+        <div class="col-lg-offset-3 col-lg-6">
+
+            <div class="jumbotron">
+                <h3>Formulaire d'inscription</h3>
+            </div>
+
+            {{ form_start(formNew, {'attr': {'novalidate': 'novalidate'}}) }}
+
+            {{ form_widget(formNew) }}
+
+            <input class="btn btn-info" type="submit" value="Inscription" />
+            {{ form_end(formNew) }}
+        </div>
+
+    </div>
+{% endblock %}

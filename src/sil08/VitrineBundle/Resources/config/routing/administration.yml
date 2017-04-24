@@ -1,0 +1,65 @@
+administration_accueil:
+    path: /accueil
+    defaults: { _controller: sil08VitrineBundle:Administration:acceuil }
+
+administration_categorie_index:
+    path:     /categorie
+    defaults: { _controller: sil08VitrineBundle:Administration:indexCategorie }
+    methods:  GET
+
+administration_categorie_new:
+    path:     /categorie/new
+    defaults: { _controller: sil08VitrineBundle:Administration:newCategorie }
+    methods:  [GET, POST]
+
+administration_categorie_edit:
+    path:     /categorie/{id}/edit
+    defaults: { _controller: sil08VitrineBundle:Administration:editCategorie }
+    methods:  [GET, POST]
+
+administration_client_index:
+    path:     /client
+    defaults: { _controller: sil08VitrineBundle:Administration:indexClient }
+    methods:  GET
+
+administration_client_edit_role:
+    path: /client/editRole/{id}/{admin}
+    defaults: { _controller: sil08VitrineBundle:Administration:editRoleClient }
+    methods: GET
+    requirements:
+        id: '\d+'
+        admin: '^[01]$'
+
+administration_article_index:
+    path:     /article
+    defaults: { _controller: sil08VitrineBundle:Administration:indexArticle }
+    methods:  GET
+
+administration_articles_par_categorie:
+    path: /articlesParCategorie/{id}
+    defaults: { _controller: sil08VitrineBundle:Administration:articlesParCategorie }
+    requirements:
+        id: '\d+'
+
+administration_article_new:
+    path:     /article/{idCateg}/new
+    defaults: { _controller: sil08VitrineBundle:Administration:newArticle }
+    methods:  [GET, POST]
+
+administration_article_edit:
+    path:     /article/{idCateg}/{id}/edit
+    defaults: { _controller: sil08VitrineBundle:Administration:editArticle }
+    methods:  [GET, POST]
+
+administration_commande_index:
+    path: /commande
+    defaults: { _controller: sil08VitrineBundle:Administration:indexCommande }
+
+administration_commande_par_client:
+    path: /commande/liste/{idClient}
+    defaults: { _controller: sil08VitrineBundle:Administration:commandesParClient }
+
+administration_commande_edit:
+    path:     /commande/{idClient}/{id}/edit
+    defaults: { _controller: sil08VitrineBundle:Administration:editCommande }
+    methods:  [GET, POST]

@@ -1,0 +1,64 @@
+{%  extends 'sil08VitrineBundle:Default:layout.html.twig' %}
+
+{% block title %}
+    Infos compte
+{% endblock %}
+
+{% block panier %}
+{% endblock %}
+
+{% block meilleuresVentes %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="panel panel-info">
+                <table class="table table-striped">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Récapitulatif de vos informations</h3>
+                    </div>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Prénom</td>
+                        <td>{{client.prenom }}</td>
+                    </tr>
+                    <tr>
+                        <td>Nom</td>
+                        <td>{{client.nom }}</td>
+                    </tr>
+                    <tr>
+                        <td>Pseudo</td>
+                        <td>{{client.pseudo }}</td>
+                    </tr>
+                    <tr>
+                        <td>Mot de passe</td>
+                        <td>**********</td>
+                    </tr>
+                    <tr>
+                        <td>Adresse</td>
+                        <td>{{client.adresse }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>{{client.email }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-offset-2">
+            <a class="btn btn-info" href="{{ path('sil08_client_edit', { 'id': client.id }) }}">Modifier</a>
+        </div>
+    </div>
+
+{% endblock %}

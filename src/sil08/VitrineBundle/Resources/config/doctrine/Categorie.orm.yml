@@ -1,0 +1,14 @@
+sil08\VitrineBundle\Entity\Categorie:
+    type: entity
+    table: categorie
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        intitule:
+            type: string
+    oneToMany:
+        articles:
+            targetEntity: Article
+            mappedBy: categorie

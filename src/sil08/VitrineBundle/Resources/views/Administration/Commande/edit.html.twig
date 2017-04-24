@@ -1,0 +1,118 @@
+{%  extends 'sil08VitrineBundle:Administration:layoutAdministration.html.twig' %}
+
+
+{% block title %}
+    Commande
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="panel panel-info">
+                <table class="table table-striped">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Récapitulatif des informations du client</h3>
+                    </div>
+                    <thead>
+                    <tr>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Pseudo</th>
+                        <th>Adresse</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ client.prenom }}</td>
+                        <td>{{ client.nom }}</td>
+                        <td>{{ client.pseudo }}</td>
+                        <td>{{ client.adresse }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="panel panel-info">
+                <table class="table table-striped">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Récapitulatif des informations de la commande</h3>
+                    </div>
+                    <thead>
+                    <tr>
+                        <th>Numéro</th>
+                        <th>Date</th>
+                        <th>Montant total</th>
+                        <th>Etat actuel</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ commande.id }}</td>
+                        <td>{{ commande.date|date('d-m-Y') }} à {{ commande.date|date('H:i:s') }}</td>
+                        <td>{{ montantCommande }}</td>
+                        <td>{{ commande.etat }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="panel panel-info">
+                <table class="table table-striped">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Articles de la commande</h3>
+                    </div>
+                    <thead>
+                    <tr>
+                        <th>Libelle</th>
+                        <th>Prix</th>
+                        <th>Quantite</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for article in articles %}
+                        <tr>
+                            <td>{{ article.libelle }}</td>
+                            <td>{{ article.prix }}</td>
+                            <td>{{ article.quantite }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="jumbotron">
+                <h3>Formulaire de modification de l'état de la commande</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-offset-3 col-lg-6">
+            {{ form_start(edit_form, {'attr': {'novalidate': 'novalidate'}}) }}
+            {{ form_widget(edit_form) }}
+            <div class="row">
+                <div class="col-lg-3">
+                    <input class="btn btn-info" type="submit" value="Enregistrer" />
+                </div>
+                <div class="col-lg-3">
+                    <a class="btn btn-info" href="{{ path('administration_commande_par_client', { 'idClient':client.id }) }}">Annuler</a>
+                </div>
+            </div>
+            {{ form_end(edit_form) }}
+        </div>
+    </div>
+
+{% endblock %}

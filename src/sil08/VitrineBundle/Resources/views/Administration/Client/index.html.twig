@@ -1,0 +1,74 @@
+{%  extends 'sil08VitrineBundle:Administration:layoutAdministration.html.twig' %}
+
+{% block title %}
+    Clients
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="jumbotron">
+                <h2>Consultation des utilisateurs</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-info">
+                <table class="table table-striped">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Liste des utilisateurs</h3>
+                    </div>
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Prenom</th>
+                        <th>Nom</th>
+                        <th>Pseudo</th>
+                        <th>Adresse</th>
+                        <th>Email</th>
+                        <th>Rôle</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for client in clients %}
+                        <tr>
+                            <td>{{ client.id }}</td>
+                            <td>{{ client.prenom }}</td>
+                            <td>{{ client.pseudo }}</td>
+                            <td>{{ client.nom }}</td>
+                            <td>{{ client.adresse }}</td>
+                            <td>{{ client.email }}</td>
+                            {% if(client.admin) %}
+                                <td>Administrateur</td>
+                                <td>
+                                {% if(client.id != app.user.id) %}
+                                    <a class="btn btn-info"
+                                       href="{{ path('administration_client_edit_role', { 'id':client.id, 'admin': 0 }) }}">
+                                        <span class="glyphicon glyphicon-minus"></span><br>
+                                        Retirer les droits administrateurs
+                                    </a>
+                                {% endif %}
+                                </td>
+                            {% else %}
+                                <td>Client</td>
+                                <td>
+                                    <a class="btn btn-info"
+                                       href="{{ path('administration_client_edit_role', { 'id':client.id, 'admin': 1 }) }}">
+                                        <span class="glyphicon glyphicon-plus"></span><br>
+                                        Ajouter les droits administrateurs
+                                    </a>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

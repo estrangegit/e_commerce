@@ -1,0 +1,44 @@
+{%  extends 'sil08VitrineBundle:Default:layout.html.twig' %}
+
+{% block title %}
+    Liste des commandes
+{% endblock %}
+
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="panel panel-info">
+                <table class="table table-striped">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Liste de vos commandes</h3>
+                    </div>
+                    <thead>
+                    <tr>
+                        <th>Numero de commande</th>
+                        <th>date</th>
+                        <th>Etat</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for commande in commandes %}
+                        <tr>
+                            <td>{{ commande.id }}</td>
+                            <td>{% if commande.date %}{{ commande.date|date('d-m-Y') }} à {{ commande.date|date('H:i:s') }}{% endif %}</td>
+                            <td>{{ commande.etat }}</td>
+                            <td>
+                                <a class="btn btn-info" href="{{ path('sil08_commande_show', { 'id': commande.id }) }}">
+                                    <span class="glyphicon glyphicon-list"></span>
+                                    <br>
+                                    Voir le détail
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

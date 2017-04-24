@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ asset('bundles/sil08vitrine/bootstrap/css/bootstrap.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/sil08vitrine/css/layout.css') }}" />
+    {% block specificCSS %}{% endblock %}
+    <title>{% block title %}Titre par défaut{% endblock %}</title>
+</head>
+<body>
+<div class="container-fluid">
+
+    <div class="row" id="header">
+        <div class="row">
+            <div class="navbar navbar-default">
+                <ul class="nav navbar-nav">
+                    <li class="active"> <a href="{{ path('administration_accueil') }}"><span class="glyphicon glyphicon-home"></span><br>Accueil</a> </li>
+                    <li> <a href="{{ path('sil08_vitrine_homepage') }}"><span class="glyphicon glyphicon-blackboard"></span><br>Vitrine</a> </li>
+                    <li> <a href="{{ path('logout') }}"><span class="glyphicon glyphicon-log-out"></span><br>Deconnexion</a> </li>
+                    <li> <a href="{{ path('administration_client_index') }}"><span class="glyphicon glyphicon-user"></span><br>Utilisateurs</a> </li>
+                    <li> <a href="{{ path('administration_categorie_index') }}"><span class="glyphicon glyphicon-tags"></span><br>Categories</a> </li>
+                    <li> <a href="{{ path('administration_article_index') }}"><span class="glyphicon glyphicon-barcode"></span><br>Articles</a> </li>
+                    <li> <a href="{{ path('administration_commande_index') }}"><span class="glyphicon glyphicon-send"></span><br>Commandes</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="identite">
+        {% block identite %}
+            {{ render(controller('sil08VitrineBundle:Administration:infosUtilisateurLayout')) }}
+        {% endblock %}
+    </div>
+
+
+    <div class="row" id="content">
+        {% block content %}{% endblock %}
+    </div>
+
+</div>
+
+<script src="{{ asset('bundles/sil08vitrine/bootstrap/js/jquery.js') }}"></script>
+<script src="{{ asset('bundles/sil08vitrine/bootstrap/js/bootstrap.js') }}"></script>
+</body>
+</html>

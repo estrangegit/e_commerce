@@ -1,0 +1,159 @@
+<?php
+
+namespace sil08\VitrineBundle\Entity;
+
+/**
+ * Commande
+ */
+class Commande
+{
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     */
+    private $date;
+
+    /**
+     * @var string
+     */
+    private $etat;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $commandes_articles;
+
+    /**
+     * @var \sil08\VitrineBundle\Entity\Client
+     */
+    private $client;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->commandes_articles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Commande
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set etat
+     *
+     * @param string $etat
+     *
+     * @return Commande
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    /**
+     * Get etat
+     *
+     * @return string
+     */
+    public function getEtat()
+    {
+        return $this->etat;
+    }
+
+    /**
+     * Add commandesArticle
+     *
+     * @param \sil08\VitrineBundle\Entity\CommandeArticle $commandesArticle
+     *
+     * @return Commande
+     */
+    public function addCommandesArticle(\sil08\VitrineBundle\Entity\CommandeArticle $commandesArticle)
+    {
+        $this->commandes_articles[] = $commandesArticle;
+
+        return $this;
+    }
+
+    /**
+     * Remove commandesArticle
+     *
+     * @param \sil08\VitrineBundle\Entity\CommandeArticle $commandesArticle
+     */
+    public function removeCommandesArticle(\sil08\VitrineBundle\Entity\CommandeArticle $commandesArticle)
+    {
+        $this->commandes_articles->removeElement($commandesArticle);
+    }
+
+    /**
+     * Get commandesArticles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommandesArticles()
+    {
+        return $this->commandes_articles;
+    }
+
+    /**
+     * Set client
+     *
+     * @param \sil08\VitrineBundle\Entity\Client $client
+     *
+     * @return Commande
+     */
+    public function setClient(\sil08\VitrineBundle\Entity\Client $client = null)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return \sil08\VitrineBundle\Entity\Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+}
+

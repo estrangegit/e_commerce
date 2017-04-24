@@ -1,0 +1,71 @@
+{%  extends 'sil08VitrineBundle:Default:layout.html.twig' %}
+
+{% block title %}
+    Commentaires
+{% endblock %}
+
+{% block panier %}
+{% endblock %}
+
+{% block meilleuresVentes %}
+{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h3>Numéro de l'article: {{ article.id }}</h3>
+        <h3>Libellé de l'article : {{ article.libelle }}</h3>
+        <h3>Prix de l'article : {{ article.prix }}€</h3>
+    </div>
+
+    {% for message in app.session.flashbag.get('success') %}
+        <div class="row">
+            <div class="col-lg-offset-3 col-lg-6 alert alert-block alert-success">
+                <span>{{ message }}</span>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+        {% if listeAvis|length > 0 %}
+
+        {% for avis in listeAvis %}
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Auteur du commentaire: {{ avis.client.prenom }}</h3>
+                </div>
+                <div class="panel-body">{{ avis.commentaire |nl2br}}</div>
+                <div class="panel-footer">
+                    Note:
+                    {% for i in 1..avis.note %}
+                        <img src="{{ asset('bundles/sil08vitrine/images/star.png') }}" />
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+
+        {% else %}
+            <h3>Il n'y a pas encore de commentaire pour cet article</h3>
+        {% endif %}
+        </div>
+    </div>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <div class="row">
+        <div class="col-lg-offset-3 col-lg-6">
+
+            <h1>Editez votre commentaire</h1>
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            {{ form_widget(form) }}
+            <div class="row">
+                <div class="col-lg-3">
+                    <input class="btn btn-info" type="submit" value="Enregistrer" />
+                </div>
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+    {% endif %}
+
+{% endblock %}

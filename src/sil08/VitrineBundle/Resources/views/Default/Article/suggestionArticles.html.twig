@@ -1,0 +1,45 @@
+{%  extends 'sil08VitrineBundle:Default:layout.html.twig' %}
+
+{% block title %}
+    suggestions
+{% endblock %}
+
+{% block panier %}
+{% endblock %}
+
+{% block meilleuresVentes %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="panel panel-info">
+                <table class="table table-striped">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Les autres clients ont aussi commandé...</h3>
+                    </div>
+                    <thead>
+                    <tr>
+                        <th>Libelle</th>
+                        <th>Prix</th>
+                        <th>Stock</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for article in listeArticles %}
+                        <tr>
+                            <td>{{ article.libelle }}</td>
+                            <td>{{ article.prix }}€</td>
+                            <td>{{ article.stock }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <a class="btn btn-info" href="{{ path('sil08_vitrine_contenu_panier') }}">
+                <div class="glyphicon glyphicon-shopping-cart"></div>
+                <div>Aller au panier</div>
+            </a>
+        </div>
+    </div>
+{% endblock %}

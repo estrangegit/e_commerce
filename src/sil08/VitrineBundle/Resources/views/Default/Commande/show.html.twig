@@ -1,0 +1,42 @@
+{%  extends 'sil08VitrineBundle:Default:layout.html.twig' %}
+
+{% block title %}
+    Détail commande
+{% endblock %}
+
+
+{% block content %}
+    <div class="jumbotron">
+        <h3>Numéro de la commande: {{ infosCommande.idCommande }}</h3>
+        <h3>Montant de la commande : {{ infosCommande.montantCommande }}€</h3>
+        <h3>Etat de la commande : {{ infosCommande.etat }}</h3>
+        <h3>Date de la commande: {{ infosCommande.date|date('d-m-Y') }} à {{ infosCommande.date|date('H:i:s') }}</h3>
+    </div>
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="panel panel-info">
+                <table class="table table-striped">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Articles de votre commande</h3>
+                    </div>
+                    <thead>
+                    <tr>
+                        <th>Libelle</th>
+                        <th>Prix</th>
+                        <th>Quantite</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for article in infosCommande.articles %}
+                        <tr>
+                            <td>{{ article.libelle }}</td>
+                            <td>{{ article.prix }}</td>
+                            <td>{{ article.quantite }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

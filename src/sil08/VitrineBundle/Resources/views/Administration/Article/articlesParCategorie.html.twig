@@ -1,0 +1,71 @@
+{%  extends 'sil08VitrineBundle:Administration:layoutAdministration.html.twig' %}
+
+{% block title %}
+    Articles
+{% endblock %}
+
+{% block specificCSS %}
+    <link rel="stylesheet" href="{{ asset('bundles/sil08vitrine/css/articlesParCategorie.css') }}" />
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="panel panel-info">
+                <table class="table table-striped">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Récapitulatif des informations de la catégorie</h3>
+                    </div>
+                    <thead>
+                    <tr>
+                        <th>Identifiant</th>
+                        <th>Intitule</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ categorie.id }}</td>
+                        <td>{{ categorie.intitule }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="jumbotron">
+                <h3>Consultation des articles de la catégorie intitulée {{ categorie.intitule }}</h3>
+                <div class="text-right">
+                <a class="btn btn-info" href="{{ path('administration_article_new', {'idCateg': categorie.id}) }}">Ajouter un article</a>
+                <a class="btn btn-info" href="{{ path('administration_article_index') }}">Retour</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class ="row">
+    {% for article in articles %}
+        <div class="article">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Article numéro {{ article.id }}: {{ article.libelle }}</h3>
+                </div>
+                <div class="panel-body text-center">
+                    <img src="{{ asset('uploads/images/' ~ article.image) }}"/>
+                    <div>{{ article.prix }}€</div>
+                    <div>stock: {{ article.stock }}</div>
+                </div>
+                <div class="panel-footer text-right">
+                    <a class="btn btn-info"
+                       href="{{ path('administration_article_edit', { 'idCateg':categorie.id, 'id': article.id }) }}">
+                        Modifier
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}

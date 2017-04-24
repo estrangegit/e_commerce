@@ -1,0 +1,26 @@
+sil08\VitrineBundle\Entity\Avis:
+    type: entity
+    repositoryClass: sil08\VitrineBundle\Entity\AvisRespository
+    table: avis
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        note:
+            type: integer
+        commentaire:
+            type: string
+    manyToOne:
+        article:
+            targetEntity: Article
+            inversedBy: avis
+            joinColumn:
+                name: id_article
+                referencedColumnName: id
+        client:
+            targetEntity: Client
+            inversedBy: avis
+            joinColumn:
+                name: id_client
+                referencedColumnName: id

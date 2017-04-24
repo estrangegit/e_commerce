@@ -1,0 +1,24 @@
+<div class="panel panel-info">
+    <table class="table table-striped">
+        <div class="panel-heading">
+            <h3 class="panel-title">Les articles les plus vendus</h3>
+        </div>
+        <thead>
+        <tr>
+            <th>Libellé</th>
+            <th>Prix</th>
+            <th>Nombre de ventes</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for articleEtVentes in articlesEtVentes %}
+            <tr>
+                <td>{{ articleEtVentes.article.libelle }}</td>
+                <td>{{ articleEtVentes.article.prix }}</td>
+                <td>{{ articleEtVentes.nbVentes }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,68 @@
+{%  extends 'sil08VitrineBundle:Default:layout.html.twig' %}
+
+{% block title %}
+    Panier
+{% endblock %}
+
+{% block content %}
+
+    {% for message in app.session.flashbag.get('error') %}
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-10 alert alert-block alert-danger">
+                <span>{{ message }}</span>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="jumbotron">
+        <h3>Montant du panier : {{ montantPanier }}€</h3>
+    </div>
+    <div class="panel panel-info">
+        <table class="table table-striped">
+            <div class="panel-heading">
+                <h3 class="panel-title">Contenu du panier</h3>
+            </div>
+            <thead>
+            <tr>
+                <th>Libelle de l'article</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>
+                    <a class="btn btn-info" href="{{ path('sil08_vitrine_validation_panier') }}">
+                        <span class="glyphicon glyphicon-check"></span>
+                        <br>
+                        Valider le panier
+                    </a>
+                    <a class="btn btn-info" href="{{ path('sil08_vitrine_vider_panier') }}">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        <br>
+                        Vider le panier
+                    </a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for infoPanier in infosPanier %}
+                <tr>
+                    <td>{{ infoPanier.libelle }}</td>
+                    <td>{{ infoPanier.prix }}</td>
+                    <td>
+                        <a class='btn btn-info btn-sm' href="{{ path('sil08_vitrine_supprimer_un_article', {'id': infoPanier.idArticle}) }}">
+                            <div class="glyphicon glyphicon-minus"></div>
+                        </a>
+                        {{ infoPanier.quantite }}
+                        <a class='btn btn-info btn-sm' href="{{ path('sil08_vitrine_ajout_article', {'id': infoPanier.idArticle}) }}">
+                            <div class="glyphicon glyphicon-plus"></div>
+                        </a>
+                    </td>
+                    <td>
+                        <a class='btn btn-info btn-sm' href="{{ path('sil08_vitrine_supprimer_article', {'id': infoPanier.idArticle}) }}">
+                            <div class="glyphicon glyphicon-trash"></div>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

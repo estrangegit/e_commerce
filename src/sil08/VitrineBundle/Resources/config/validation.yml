@@ -1,0 +1,73 @@
+sil08\VitrineBundle\Entity\Client:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: pseudo
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
+    properties:
+        prenom:
+            - NotBlank: ~
+            - Length:
+                min: 3
+        nom:
+            - NotBlank: ~
+            - Length:
+                min: 3
+        pseudo:
+            - NotBlank: ~
+            - Length:
+                min: 3
+        motDePasse:
+            - NotBlank: ~
+            - Length:
+                min: 3
+        adresse:
+            - NotBlank: ~
+        email:
+            - NotBlank: ~
+            - Email:
+                message: l'adresse {{ value }} n'est pas un email valide.
+                checkMX: true
+
+sil08\VitrineBundle\Entity\Categorie:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: intitule
+    properties:
+        intitule:
+            - NotBlank: ~
+            - Length:
+                min: 3
+
+sil08\VitrineBundle\Entity\Article:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: libelle
+    properties:
+        libelle:
+            - NotBlank: ~
+            - Length:
+                min: 3
+        prix:
+            - NotBlank: ~
+            - GreaterThanOrEqual:
+                value: 0
+        stock:
+            - NotBlank: ~
+            - GreaterThanOrEqual:
+                value: 0
+        image:
+            - NotBlank: ~
+            - Image:
+                minWidth: 130
+                maxWidth: 150
+                minHeight: 130
+                maxHeight: 150
+
+sil08\VitrineBundle\Entity\Avis:
+    properties:
+        commentaire:
+            - NotBlank: ~
+        note:
+            - NotBlank: ~
+            - Range:
+                min: 0
+                max: 5
+                minMessage: Une note doit être plus grande que  {{ limit }}
+                maxMessage: Une note doit être plus petite que {{ limit }}

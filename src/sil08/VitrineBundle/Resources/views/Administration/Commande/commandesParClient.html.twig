@@ -1,0 +1,85 @@
+{%  extends 'sil08VitrineBundle:Administration:layoutAdministration.html.twig' %}
+
+{% block title %}
+    Commandes
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="panel panel-info">
+                <table class="table table-striped">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Récapitulatif des informations du client</h3>
+                    </div>
+                    <thead>
+                    <tr>
+                        <th>Identifiant</th>
+                        <th>Prénom</th>
+                        <th>Nom</th>
+                        <th>Pseudo</th>
+                        <th>Adresse</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ client.id }}</td>
+                        <td>{{ client.prenom }}</td>
+                        <td>{{ client.nom }}</td>
+                        <td>{{ client.pseudo }}</td>
+                        <td>{{ client.adresse }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="jumbotron">
+                <h3>Consultation des commandes du client {{ client.prenom }} {{ client.nom }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="panel panel-info">
+                <table class="table table-striped">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Liste des commandes</h3>
+                    </div>
+                    <thead>
+                    <tr>
+                        <th>Numéro</th>
+                        <th>Date</th>
+                        <th>Etat</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for commande in commandes %}
+                        <tr>
+                            <td>{{ commande.id }}</td>
+                            <td>{{ commande.date|date('d-m-Y') }} à {{ commande.date|date('H:i:s') }}</td>
+                            <td>{{ commande.etat }}</td>
+                            <td>
+                                <a class="btn btn-info"
+                                   href="{{ path('administration_commande_edit', { 'idClient':client.id, 'id': commande.id }) }}">Modifier</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <a class="btn btn-info" href="{{ path('administration_commande_index') }}">Retour à la consultation par client</a>
+        </div>
+    </div>
+{% endblock %}

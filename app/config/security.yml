@@ -1,0 +1,35 @@
+security:
+    encoders:
+#        Symfony\Component\Security\Core\User\User: plaintext
+        sil08\VitrineBundle\Entity\Client:
+            algorithm: bcrypt
+            cost: 12
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+
+    providers:
+        utilisateurs:
+            entity: { class: sil08VitrineBundle:Client, property: pseudo }
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern: ^/
+            anonymous: true
+            provider: utilisateurs
+            form_login:
+                login_path: /login
+                check_path: /login_check
+#                default_target_path: sil08_vitrine_homepage
+#                always_use_default_target_path: true
+            logout:
+                path: /logout
+                target: /login
+
+    access_control:
+        - { path: ^/administration, roles: ROLE_ADMIN }
+        - { path: ^/client, roles: ROLE_USER }
+

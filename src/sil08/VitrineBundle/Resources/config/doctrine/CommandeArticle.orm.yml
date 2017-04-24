@@ -1,0 +1,28 @@
+sil08\VitrineBundle\Entity\CommandeArticle:
+    type: entity
+    repositoryClass: sil08\VitrineBundle\Entity\CommandeArticleRespository
+    table: commande_article
+    id:
+        article:
+            associationKey: true
+        commande:
+            associationKey: true
+    fields:
+        quantite:
+            type: integer
+        prix:
+            type: decimal
+            scale: 2
+    manyToOne:
+        article:
+            targetEntity: Article
+            inversedBy: commandes_articles
+            joinColumn:
+                name: id_article
+                referencedColumnName: id
+        commande:
+            targetEntity: Commande
+            inversedBy: commandes_articles
+            joinColumn:
+                name: id_commande
+                referencedColumnName: id

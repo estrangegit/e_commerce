@@ -1,0 +1,46 @@
+{%  extends 'sil08VitrineBundle:Default:layout.html.twig' %}
+
+{% block title %}
+    Validation
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="jumbotron">
+                <h2>La commande numéro {{ commande.id }} a bien été enregistrée</h2>
+                <h3>Montant de la commande : {{ montantCommande }}€</h3>
+                <h3>Nombre d'articles : {{ nbArticles }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="panel panel-info">
+                <table class="table table-striped">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Contenu de la commande</h3>
+                    </div>
+                    <thead>
+                    <tr>
+                        <th>Libelle de l'article</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for infoCommande in infosCommande %}
+                        <tr>
+                            <td>{{ infoCommande.libelle }}</td>
+                            <td>{{ infoCommande.prix }}</td>
+                            <td>{{ infoCommande.quantite }}</td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

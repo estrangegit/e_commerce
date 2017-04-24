@@ -1,0 +1,51 @@
+{%  extends 'sil08VitrineBundle:Administration:layoutAdministration.html.twig' %}
+
+{% block title %}
+    Clients
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <div class="jumbotron">
+                <h2>Consultation des commandes par client</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="panel panel-info">
+                <table class="table table-striped">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Liste des clients</h3>
+                    </div>
+                    <thead>
+                    <tr>
+                        <th>Prenom</th>
+                        <th>Nom</th>
+                        <th>Pseudo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for client in clients %}
+                        <tr>
+                            <td>{{ client.prenom }}</td>
+                            <td>{{ client.nom }}</td>
+                            <td>{{ client.pseudo }}</td>
+                            <td>
+                                <a class="btn btn-info" href="{{ path('administration_commande_par_client', {'idClient': client.id}) }}">
+                                    <span class="glyphicon glyphicon-list"></span>
+                                    <br>
+                                    Voir les commandes
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

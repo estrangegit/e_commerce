@@ -1,0 +1,26 @@
+{%  extends 'sil08VitrineBundle:Default:layout.html.twig' %}
+
+{% block specificCSS %}
+    <link rel="stylesheet" href="{{ asset('bundles/sil08vitrine/css/index.css') }}" />
+{% endblock %}
+
+{% block title %}
+    Accueil
+{% endblock %}
+
+{% block identite %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10 jumbotron">
+            <h1>Bonjour {{ name }}!</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10 jumbotron">
+            <img src="{{ asset('bundles/sil08vitrine/images/La_poule_a_pois_logo.jpg') }}">
+        </div>
+    </div>
+{% endblock %}
